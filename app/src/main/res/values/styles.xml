@@ -1,0 +1,91 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/colorSecondary</item>
+        <item name="android:fontFamily">@font/din_pro_light</item>
+        <item name="fontFamily">@font/din_pro_light</item>
+    </style>
+
+
+    <style name="ButtonAppearance.Sandbox.Outline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:fontFamily">@font/din_pro_light</item>
+        <item name="fontFamily">@font/din_pro_light</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ButtonAppearance.Sandbox.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:fontFamily">@font/din_pro_light</item>
+        <item name="fontFamily">@font/din_pro_light</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ButtonAppearance.Sandbox.Normal" parent="Widget.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/din_pro_light</item>
+        <item name="fontFamily">@font/din_pro_light</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.Sandbox.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:fontFamily">@font/din_pro</item>
+        <item name="fontFamily">@font/din_pro</item>
+        <item name="android:textSize">96sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Sandbox.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:fontFamily">@font/din_pro</item>
+        <item name="fontFamily">@font/din_pro</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Sandbox.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:fontFamily">@font/din_pro</item>
+        <item name="fontFamily">@font/din_pro</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Sandbox.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:fontFamily">@font/din_pro</item>
+        <item name="fontFamily">@font/din_pro</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Sandbox.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:fontFamily">@font/din_pro</item>
+        <item name="fontFamily">@font/din_pro</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Sandbox.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:fontFamily">@font/din_pro</item>
+        <item name="fontFamily">@font/din_pro</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Sandbox.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">@font/din_pro_light</item>
+        <item name="fontFamily">@font/din_pro_light</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Sandbox.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:fontFamily">@font/din_pro_light</item>
+        <item name="fontFamily">@font/din_pro_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+</resources>

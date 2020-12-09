@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="app_name">BankCard Recognition Codelab</string>
+    <string name="bcr_s">Bank Card Recognition</string>
+
+    <string name="bcr_tips_personal_information_protected">Your personal information will be protected in accordance with the law.</string>
+    <string name="bcr_tips_please_take_and_upload_bank_card_picture">Please Take and Upload Bank Card Picture</string>
+    <string name="bcr_take_card_photo">Take Card Photo</string>
+    <string name="card_number_will_be_here">Card Number</string>
+    <string name="star">****</string>
+    <string name="date">12/20</string>
+    <string name="type">Visa</string>
+    <string name="recognition_result_descriptions_will_be_here">Recognition Result Descriptions Will Be Here!</string>
+    <string name="tips_can_cop_to_clipboard">You can copy to clipboard by click to card numbers.</string>
+    <string name="text_ml_bcr_tips_content">"The bank card recognition service recognizes bank cards in camera streams within angle offset of 15 degrees and extracts key information such as card number and expiration date. "</string>
+
+    <string name="link_trs_bcr">https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides-V5/bank-card-recognition-0000001050038118</string>
+    <string name="card_number_empty">Card Number is Empty!</string>
+    <string name="card_number_copied">Card Number Copied to Clipboard.\nYou can use : </string>
+    <string name="you_can_not_use_ml_bcr_wihtout_permission">You can not use MLGcr CapturePhoto without Camera And Storage Permission!</string>
+    <string name="yes_go">YES GO</string>
+    <string name="cancel">CANCEL</string>
+    <string name="go_to_permission_setting">Would You Like To Go To Permission Settings To Allow?</string>
+    <string name="need_camera_and_storage_permission">NEED CAMERA and STORAGE PERMISSION</string>
+
+</resources>

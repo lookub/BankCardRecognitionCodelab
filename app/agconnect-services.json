@@ -1,0 +1,35 @@
+{
+	"agcgw":{
+		"backurl":"connect-dre.dbankcloud.cn",
+		"url":"connect-dre.hispace.hicloud.com"
+	},
+	"client":{
+		"appType":"1",
+		"cp_id":"5190090000025207658",
+		"product_id":"736430079244730823",
+		"client_id":"512321337448989760",
+		"client_secret":"FCBE24C1DA2F64BA96B3989D945CEF70E86B6CB7F91AE1AA4C6F2F49C371D7D4",
+		"project_id":"736430079244730823",
+		"app_id":"103438199",
+		"api_key":"CgB6e3x9wOq4k7eAVGVpgD/jMfIxOyRb/mlj5DCe3Cd6f/29IjWuvrVzOb9uHak2obK1NVZthD25IDGNs2MfZjiv",
+		"package_name":"com.hms.codelab.mlkit.bankcardrecognition"
+	},
+	"service":{
+		"analytics":{
+			"collector_url":"datacollector-dre.dt.hicloud.com,datacollector-dre.dt.dbankcloud.cn",
+			"resource_id":"p1",
+			"channel_id":""
+		},
+		"search":{
+			"url":"https://search-dre.cloud.huawei.com"
+		},
+		"cloudstorage":{
+			"storage_url":"https://ops-dre.agcstorage.link"
+		},
+		"ml":{
+			"mlservice_url":"ml-api-dre.ai.dbankcloud.com,ml-api-dre.ai.dbankcloud.cn"
+		}
+	},
+	"region":"DE",
+	"configuration_version":"1.0"
+}
