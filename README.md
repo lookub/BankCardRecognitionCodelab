@@ -70,7 +70,7 @@ For this project you have to set enable ML Kit
 
 <br /> 
 
-## :star2::link: [Useful Links](usefull-links) 
+## :star2: [Useful Links](usefull-links) 
 
 * [ML Kit Functions](https://developer.huawei.com/consumer/en/hms/huawei-mlkit)
 

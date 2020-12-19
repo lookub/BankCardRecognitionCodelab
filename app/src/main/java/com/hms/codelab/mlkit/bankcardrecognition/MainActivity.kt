@@ -1,8 +1,10 @@
 package com.hms.codelab.mlkit.bankcardrecognition
 
 import android.Manifest
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -19,10 +21,6 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.Unbinder
 import com.hms.codelab.mlkit.bankcardrecognition.util.Utils
-import com.huawei.hms.mlplugin.card.bcr.MLBcrCapture
-import com.huawei.hms.mlplugin.card.bcr.MLBcrCaptureConfig
-import com.huawei.hms.mlplugin.card.bcr.MLBcrCaptureFactory
-import com.huawei.hms.mlplugin.card.bcr.MLBcrCaptureResult
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     private val TAG: String = MainActivity::class.java.simpleName
 
     private var unbinder: Unbinder? = null
+
+    // TODO : create -> private lateinit var bcrCaptureCallback: MLBcrCapture.Callback
+    //private lateinit var bcrCaptureCallback: MLBcrCapture.Callback
 
     private val permissionCodeCameraAndStorage = 2
     private var permissionRequestCameraAndStorage = arrayOf(
@@ -95,6 +96,19 @@ class MainActivity : AppCompatActivity() {
 
         unbinder = ButterKnife.bind(this)
 
+        createAndInitializeBcrCaptureCallback()
+    }
+
+
+    private fun createAndInitializeBcrCaptureCallback() {
+        // TODO : create and initialize of MLBcrCapture.Callback
+        // TODO : call displaySuccessAnalyseResults method with MLBcrCaptureResult param in Callback onSuccess , to show recognised details
+    }
+
+    private fun startMLBcrCaptureCameraStream() {
+        // TODO : create and initialize of MLBcrCaptureConfig.Factory
+        // TODO : custom initialize of MLBcrCaptureConfig.Factory
+        // TODO : create and initialize of MBcrCapture
     }
 
     @OnClick(
@@ -123,6 +137,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkAndRequestPermissions() {
+        // TODO : call ActivityCompat.requestPermissions with checkAndRequestPermissions method
         ActivityCompat.requestPermissions(
             this,
             permissionRequestCameraAndStorage,
@@ -130,6 +145,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    // TODO : call startMLBcrCaptureCameraStream function if permissions were has got granted
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String?>,
@@ -140,6 +156,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == permissionCodeCameraAndStorage) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED
             ) {
+                // TODO : call startMLBcrCaptureCameraStream function if permissions were has got granted
                 startMLBcrCaptureCameraStream()
             } else {
                 Log.d(TAG, "onRequestPermissionsResult : CameraPermission  was NOT GRANTED")
@@ -155,113 +172,59 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun startMLBcrCaptureCameraStream() {
-        val config = MLBcrCaptureConfig.Factory()
-            // Set the expected result type of bank card recognition.
-            // MLBcrCaptureConfig.RESULT_NUM_ONLY: Recognize only the bank card number.
-            // MLBcrCaptureConfig.RESULT_SIMPLE: Recognize only the bank card number and validity period.
-            // MLBcrCaptureConfig.ALL_RESULT: Recognize information such as the bank card number, validity period, issuing bank, card organization, and card type.
-            .setIsShowPortraitStatusBar(true)
-            .setResultType(MLBcrCaptureConfig.RESULT_ALL)
-            // Set the recognition screen display orientation.
-            // MLBcrCaptureConfig.ORIENTATION_AUTO: adaptive mode. The display orientation is determined by the physical sensor.
-            // MLBcrCaptureConfig.ORIENTATION_LANDSCAPE: landscape mode.
-            // MLBcrCaptureConfig.ORIENTATION_PORTRAIT: portrait mode.
-            .setOrientation(MLBcrCaptureConfig.ORIENTATION_AUTO)
-            .create()
-        try {
-            val bcrCapture = MLBcrCaptureFactory.getInstance().getBcrCapture(config)
-            bcrCapture.captureFrame(this, bcrCaptureCallback)
-        } catch (e: Exception) {
-            Log.e(TAG, "MLBcrCapture captureFrame Exception : " + e.message, e)
-            displayFailureAnalyseResults(e.message.toString())
-        }
-    }
-
-
-    private val bcrCaptureCallback: MLBcrCapture.Callback = object : MLBcrCapture.Callback {
-        override fun onSuccess(result: MLBcrCaptureResult) {
-            if (result == null) {
-                Log.e(TAG, "callback MLBcrCaptureResult is null")
-                displayFailureAnalyseResults("MLBcrCaptureResult is NULL !")
-                return
-            }
-            displaySuccessAnalyseResults(result)
-            Log.i(TAG, "Success AnalyseResults : $result")
-        }
-
-        override fun onCanceled() {
-            displayFailureAnalyseResults("MLBcrCaptureResult callback onCanceled !")
-        }
-
-        override fun onFailure(retCode: Int, bitmap: Bitmap) {
-            displayFailureAnalyseResults("MLBcrCaptureResult callback onFailure ! $retCode")
-        }
-
-        override fun onDenied() {
-            displayFailureAnalyseResults("MLBcrCaptureResult callback onCameraDenied !")
-        }
-    }
-
     // ------------------------------------------------------------------------------------------ //
 
     private fun copyTextToClipboard(clickedView: TextView) {
-
+        // TODO : use Context.CLIPBOARD_SERVICE and set clipboard.setPrimaryClip with created ClipData.newPlainText object
         val clickedText: String = clickedView.text.toString()
-
-        if (clickedText.isNotEmpty()) {
-            Utils.copyTextToClipboard(applicationContext, "copiedCardNumber", clickedText)
-            Utils.showToastMessage(
-                applicationContext, getString(R.string.card_number_copied) + clickedText
-            )
-        } else {
-            Utils.showToastMessage(applicationContext, getString(R.string.card_number_empty))
-        }
+        val clipboard = applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("copiedCardNumber", clickedText)
+        clipboard.setPrimaryClip(clip)
     }
 
 
-    private fun displaySuccessAnalyseResults(result: MLBcrCaptureResult) {
-        val analyseResults: String = editFormatCardAnalyseResult(result).toString()
-        Log.i(TAG, "Success AnalyseResults : $analyseResults")
-        Utils.createVibration(applicationContext, 200)
-        clResults.visibility = View.VISIBLE
-        ivDelete.visibility = View.VISIBLE
-        ivCardImage.setImageBitmap(result.originalBitmap)
-        ivCardNumberImage.setImageBitmap(result.numberBitmap)
-        tvCardType.text = result.organization
-        tvExpireDate.text = result.expire
-        tvCardNumberAll.text = result.number
-        tvCardNumber1.text = result.number.substring(0, 4)
-        tvCardNumber2.text = result.number.substring(4, 8)
-        tvCardNumber3.text = result.number.substring(8, 12)
-        tvCardNumber4.text = result.number.substring(12, 16)
-    }
+    // TODO : Set and edit view with MLBcrCaptureResult object detail information in displaySuccessAnalyseResults function to show recognised card details
+    //private fun displaySuccessAnalyseResults(result: MLBcrCaptureResult) {
+    //    val analyseResults: String = editFormatCardAnalyseResult(result).toString()
+    //    Log.i(TAG, "Success AnalyseResults : $analyseResults")
+    //    Utils.createVibration(applicationContext, 200)
+    //    clResults.visibility = View.VISIBLE
+    //    ivDelete.visibility = View.VISIBLE
+    //    ivCardImage.setImageBitmap(result.originalBitmap)
+    //    ivCardNumberImage.setImageBitmap(result.numberBitmap)
+    //    tvCardType.text = result.organization
+    //    tvExpireDate.text = result.expire
+    //    tvCardNumberAll.text = result.number
+    //    tvCardNumber1.text = result.number.substring(0, 4)
+    //    tvCardNumber2.text = result.number.substring(4, 8)
+    //    tvCardNumber3.text = result.number.substring(8, 12)
+    //    tvCardNumber4.text = result.number.substring(12, 16)
+    //}
 
-    private fun editFormatCardAnalyseResult(result: MLBcrCaptureResult): String? {
-        val resultBuilder = StringBuilder()
-        resultBuilder.append("Number：")
-        resultBuilder.append(result.number)
-        resultBuilder.append(System.lineSeparator())
-
-        resultBuilder.append("Issuer：")
-        resultBuilder.append(result.issuer)
-        resultBuilder.append(System.lineSeparator())
-
-        resultBuilder.append("Expire: ")
-        resultBuilder.append(result.expire)
-        resultBuilder.append(System.lineSeparator())
-
-        resultBuilder.append("Type: ")
-        resultBuilder.append(result.type)
-        resultBuilder.append(System.lineSeparator())
-
-        resultBuilder.append("Organization: ")
-        resultBuilder.append(result.organization)
-        resultBuilder.append(System.lineSeparator())
-
-        return resultBuilder.toString()
-    }
+    //private fun editFormatCardAnalyseResult(result: MLBcrCaptureResult): String? {
+    //    val resultBuilder = StringBuilder()
+    //    resultBuilder.append("Number：")
+    //    resultBuilder.append(result.number)
+    //    resultBuilder.append(System.lineSeparator())
+//
+    //    resultBuilder.append("Issuer：")
+    //    resultBuilder.append(result.issuer)
+    //    resultBuilder.append(System.lineSeparator())
+//
+    //    resultBuilder.append("Expire: ")
+    //    resultBuilder.append(result.expire)
+    //    resultBuilder.append(System.lineSeparator())
+//
+    //    resultBuilder.append("Type: ")
+    //    resultBuilder.append(result.type)
+    //    resultBuilder.append(System.lineSeparator())
+//
+    //    resultBuilder.append("Organization: ")
+    //    resultBuilder.append(result.organization)
+    //    resultBuilder.append(System.lineSeparator())
+//
+    //    return resultBuilder.toString()
+    //}
 
     private fun displayFailureAnalyseResults(msg: String) {
         Log.i(TAG, "Failure AnalyseResults : $msg")

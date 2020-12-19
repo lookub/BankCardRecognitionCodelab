@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.huawei.agconnect'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -66,15 +65,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0-alpha04'
 
     // Bank Card Recognition ---------------------------------------- //
-    // implementation 'com.huawei.hms:ml-computer-vision-bcr:2.0.0.300'
-
     // Import the combined package of the bank card recognition plug-in and recognition capability.
-    implementation 'com.huawei.hms:ml-computer-card-bcr:2.0.3.301'
-
-    // Import the bank card recognition plug-in package.
-    // implementation 'com.huawei.hms:ml-computer-card-bcr-plugin:2.0.3.301'
-
-    // automatically Updating the Machine Learning Model manifest metadata
-    // <meta-data android:name="com.huawei.hms.ml.DEPENDENCY" android:value= "bcr"/>
 
 }

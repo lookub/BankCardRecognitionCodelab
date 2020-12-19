@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">BankCard Recognition Codelab</string>
-    <string name="bcr_s">Bank Card Recognition</string>
+    <string name="bcr_s">Bank Card Recognition Codelab</string>
 
     <string name="bcr_tips_personal_information_protected">Your personal information will be protected in accordance with the law.</string>
     <string name="bcr_tips_please_take_and_upload_bank_card_picture">Please Take and Upload Bank Card Picture</string>
